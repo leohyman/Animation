@@ -2,7 +2,7 @@
 //  main.m
 //  AnimationManager
 //
-//  Created by lvzhao on 2020/7/24.
+//  Created by lvzhao on 2020/7/28.
 //  Copyright © 2020 吕VV. All rights reserved.
 //
 
@@ -15,5 +15,5 @@ int main(int argc, char * argv[]) {
         // Setup code that might create autoreleased objects goes here.
         appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
-        return UIApplicationMain(argc, argv, nil, appDelegateClassName);
+    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }
