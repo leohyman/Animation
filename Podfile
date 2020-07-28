@@ -6,7 +6,7 @@ target 'AnimationManager' do
   use_frameworks!
 
 
-pod 'YYKit'
+pod 'Masonry'
 
   # Pods for AnimationManager
 
