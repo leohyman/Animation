@@ -18,12 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //    [[AnimationManager shareManager] showAnimation:self.view animation:AnimationTypePraise];
+
 }
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    [[AnimationManager shareManager] showAnimation:self.view animation:AnimationTypePraise];
- 
+ [[AnimationManager shareManager] showAnimation:self.view animation:AnimationTypeParty];
+
 }
 @end

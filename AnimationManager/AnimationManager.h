@@ -15,6 +15,10 @@ typedef NS_ENUM(NSInteger, AnimationType)
 {
     /// 大赞一个
     AnimationTypePraise,
+    /// 聚餐
+    AnimationTypeParty,
+    ///新年快乐
+    AnimationTypeNewYear,
 };
 
 ///抛物线动画的运动方向
