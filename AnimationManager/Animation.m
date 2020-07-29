@@ -122,7 +122,6 @@
     
     BOOL iaAddQuadCurvrPoint = YES;//判断是否要增加抛物线路劲
     CGFloat distance = 0;
-    NSInteger midAutumnCount = 0; //中秋表情使用
 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(contentView.width, contentView.height, image.size.width,  image.size.height)];
     imageView.image = image;
@@ -139,6 +138,7 @@
         iaAddQuadCurvrPoint = [self calculateParabolaParameter:animationType];
         CGPathAddQuadCurveToPoint(animationPath, NULL, self.parabolaApexPoint.x, self.parabolaApexPoint.y,self.parabolaEndPoint.x, self.parabolaEndPoint.y);
         distance += CGRectGetHeight(self.contentView.frame) - self.parabolaApexPoint.y;
+        if (animationType == AnimationTypeCongratulate ){break;}
     } while (iaAddQuadCurvrPoint);
 
     animation.delegate = self;
@@ -167,6 +167,8 @@
                parabolaHeight = arc4random() % (NSInteger)(CGRectGetHeight(self.contentView.frame) * 0.4) + (CGRectGetHeight(self.contentView.frame) * 0.3);
                break;
            default:
+               parabolaHeight = arc4random() % (NSInteger)(CGRectGetHeight(self.contentView.frame) * 0.9) + (CGRectGetHeight(self.contentView.frame) * 0.9);
+
                break;
        }
        

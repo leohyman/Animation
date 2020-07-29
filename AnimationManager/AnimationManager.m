@@ -18,6 +18,9 @@
 
 @property (nonatomic,strong) UIView *contentView;
 
+@property (nonatomic,assign) NSInteger imageCount;
+
+@property (nonatomic,strong) NSTimer *timer;
 @end
 
 @implementation AnimationManager
@@ -58,8 +61,9 @@ static AnimationManager *animationManager = nil;
             [self showPartyAnimation];
         }
             break;
-        case AnimationTypeNewYear:{
+        case AnimationTypeCongratulate:{
             
+            [self showCongratulateAnimation];
         }
         default:
             break;
@@ -93,11 +97,36 @@ static AnimationManager *animationManager = nil;
     
 }
 
-///新年快乐动画
-- (void)showNewYearAnimation{
+///祝贺动画
+- (void)showCongratulateAnimation{
+    
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 5; i++){
+        NSString *imageName = [NSString stringWithFormat:@"praise%d",i+1];
+        [imageArray addObject:[UIImage imageNamed:imageName]];
+    }
+    self.imageCount = 120;
+    self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(createAnimation:) userInfo:@{@"images":imageArray} repeats:YES];
+    [self.timer fire];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
 
-    
-    
+- (void)createAnimation:(NSTimer *)timer{
+    self.imageCount --;
+    NSLog(@"-------");
+    if(self.imageCount == 0){
+        [self.timer invalidate];
+        return;
+    }
+    if(self.imageCount > 0){
+           NSDictionary *info = timer.userInfo;
+           NSMutableArray *imageArray = info[@"images"];
+
+           UIImage *image = imageArray[arc4random() % imageArray.count];
+           CGRect imageViewRect = CGRectMake(self.contentView.width / 2, self.contentView.height, 36, 36);
+           Animation *detailAnimation = [[Animation alloc] init];
+           [detailAnimation showParabola:imageViewRect image:image showView:self.contentView type:AnimationTypeCongratulate];
+    }
 }
 ///显示聚餐动画
 - (void)showPartyAnimation{
